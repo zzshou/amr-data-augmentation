@@ -72,7 +72,7 @@ def write_negative(file):
 
 def replace_syntonym(line, n=1, alpha=0.1, vocab=None, aug=None):
     if not aug:
-        aug = SynonymAug(aug_src='ppdb', model_path='/path_to/ppdb-2.0-tldr',
+        aug = SynonymAug(aug_src='ppdb', model_path='/home/data/zshou/corpus/nltk/ppdb-2.0-tldr',
                          tokenizer=WhitespaceTokenizer(), vocab=vocab, aug_p=alpha)
     new_line = aug.augment(line, n=n)
     if n == 1:
@@ -84,7 +84,7 @@ def replace_syntonym(line, n=1, alpha=0.1, vocab=None, aug=None):
 def write_syntonym(input, output, alpha=0.1, n=1):
     # new_file = file.replace('.source', '_synaug_n%d.source' % n)
     new_lines = []
-    aug = SynonymAug(aug_src='ppdb', model_path='/path_to/ppdb-2.0-tldr',
+    aug = SynonymAug(aug_src='ppdb', model_path='/home/data/zshou/corpus/nltk/ppdb-2.0-tldr',
                      tokenizer=WhitespaceTokenizer(), aug_p=alpha)
     with open(input, 'r') as f:
         for line in tqdm(f):
@@ -403,5 +403,3 @@ if __name__ == '__main__':
     write_delete_leaf(file, rd, 0.1)
     ins = file.replace('.source', '_insert_0.1.source')
     write_insert(file, ins, leaf_list, alpha=0.1)
-    rs = file.replace('.source', '_rs_0.1.source')
-    write_swap(file, rs, alpha=0.1)
