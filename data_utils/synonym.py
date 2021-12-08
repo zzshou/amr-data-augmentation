@@ -52,7 +52,7 @@ class SynonymAug(WordAugmenter):
 
     def __init__(self, aug_src='wordnet', model_path=None, name='Synonym_Aug', aug_min=1, aug_max=10, aug_p=0.3,
                  lang='eng', stopwords=None, tokenizer=None, reverse_tokenizer=None, stopwords_regex=None,
-                 force_reload=False, verbose=0):
+                 force_reload=False, verbose=0, vocab=None):
         super().__init__(
             action=Action.SUBSTITUTE, name=name, aug_p=aug_p, aug_min=aug_min, aug_max=aug_max, stopwords=stopwords,
             tokenizer=tokenizer, reverse_tokenizer=reverse_tokenizer, device='cpu', verbose=verbose,
@@ -62,6 +62,7 @@ class SynonymAug(WordAugmenter):
         self.model_path = model_path
         self.lang = lang
         self.model = self.get_model(aug_src, lang, model_path, force_reload)
+        self.vocab = vocab
 
     def skip_aug(self, token_idxes, tokens):
         results = []
@@ -77,7 +78,7 @@ class SynonymAug(WordAugmenter):
                 word_poses = PartOfSpeech.constituent2pos(tokens[token_idx][1])
                 if word_poses is None or len(word_poses) == 0:
                     continue
-                
+
                 have_candidate = False
                 for word_pos in word_poses:
                     if len(self.model.predict(tokens[token_idx][0], pos=word_pos)) > 0:
@@ -93,7 +94,7 @@ class SynonymAug(WordAugmenter):
         return results
 
     def _get_aug_idxes(self, tokens):
-        aug_cnt = self.generate_aug_cnt(len(tokens))
+        aug_cnt = self.generate_aug_cnt(len([t for t in tokens if t[0] not in ('(', ')') and not t[0].startswith(':')]))
         word_idxes = self.pre_skip_aug(tokens, tuple_idx=0)
         word_idxes = self.skip_aug(word_idxes, tokens)
         if len(word_idxes) == 0:
@@ -110,7 +111,7 @@ class SynonymAug(WordAugmenter):
     def substitute(self, data):
         if not data or not data.strip():
             return data
-            
+
         change_seq = 0
         try:
             doc = Doc(data, self.tokenizer(data))
@@ -138,9 +139,12 @@ class SynonymAug(WordAugmenter):
             else:
                 for word_pos in word_poses:
                     candidates.extend(self.model.predict(pos[aug_idx][0], pos=word_pos))
-
-            candidates = [c for c in candidates if c.lower() != original_token.lower()]
-
+            if self.vocab:
+                candidates = [c for c in candidates if c.lower() != original_token.lower() and c.lower() in self.vocab]
+            else:
+                candidates = [c for c in candidates if c.lower() != original_token.lower()]
+            if len(candidates) == 0:
+                print(data)
             if len(candidates) > 0:
                 candidate = self.sample(candidates, 1)[0]
                 candidate = candidate.replace("_", " ").replace("-", " ").lower()
