@@ -1,6 +1,6 @@
 # AMR-DA: Data Augmentation By Abstract Meaning Representation
 
-This repository contains the code for the paper: AMR-DA: Data Augmentation By Abstract Meaning Representation.
+This repository contains the code for our ACL-2022 finding paper: AMR-DA: Data Augmentation By Abstract Meaning Representation.
 
 This figure shows an overview of AMR-DA: AMR parser first transduces the sentence into an AMR graph, followed by an AMR graph extender to diversify graphs with different augmentation strategies; finally, the AMR generator synthesizes augmentations from AMR graphs.
 
