@@ -20,7 +20,7 @@ if __name__ == '__main__':
                         help="Required. One or more glob patterns to use to load amr files.")
     parser.add_argument('--checkpoint', type=str, required=True,
                         help="Required. Checkpoint to restore.")
-    parser.add_argument('--model', type=str, default='/home/data/zshou/corpus/bart-large',
+    parser.add_argument('--model', type=str, default='/pathto/bart-large',
                         help="Model config to use to load the model class.")
     parser.add_argument('--beam-size', type=int, default=1,
                         help="Beam size.")
