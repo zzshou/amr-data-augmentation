@@ -6,7 +6,7 @@ This figure shows an overview of AMR-DA: AMR parser first transduces the sentenc
 
 ![Screenshot](pic/pipeline.jpg)
 
-The work adopts [SPRING](https://github.com/SapienzaNLP/spring) as our AMR parser and [plms-graph2text](https://github.com/UKPLab/plms-graph2text) as AMR generator.
+The work adopts [SPRING](https://github.com/SapienzaNLP/spring) as AMR parser and [plms-graph2text](https://github.com/UKPLab/plms-graph2text) as AMR generator.
 ## Requirements 
 ```
 pip install -r requirements.txt
@@ -27,7 +27,7 @@ bash prepare_data.sh <amr_file_path>(../../data/wiki_data/wiki.amr)
 ## Graph Modification
 ```
 cd data_utils
-python augment.py (modify parameters according to your requirements)
+python augment.py (modify parameters according to specific requirements)
 ```
 
 ## AMR to Text
