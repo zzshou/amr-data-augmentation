@@ -39,8 +39,8 @@ bash decode_AMR.sh <model-path> <checkpoint> <gpu_id> <source file> <output-name
 ```
 
 ## Generated Data Examples
-Example augmentations for wiki:
-[original data](https://drive.google.com/file/d/1SA8MsJvyDPdsQwZ0-QJ1jZ6P39Kp98WN/view?usp=sharing) and [generated augmentation](https://drive.google.com/file/d/1kXKeMwBqz0Bf0pyX_D4zFXCmZts8Iyg8/view?usp=sharing).
+Augmentations examples for wiki:
+[original data](https://drive.google.com/file/d/1SA8MsJvyDPdsQwZ0-QJ1jZ6P39Kp98WN/view?usp=sharing) and [generated augmentations](https://drive.google.com/file/d/1kXKeMwBqz0Bf0pyX_D4zFXCmZts8Iyg8/view?usp=sharing).
 
 ## Citation
 Please cite this repository using the following reference:
