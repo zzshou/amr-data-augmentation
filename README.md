@@ -1,8 +1,8 @@
 # AMR-DA: Data Augmentation By Abstract Meaning Representation
 
-We propose a new DA method called AMR-DA that uses the Abstract Meaning Representation (AMR, Banarescu et al., 2013) as the intermediate language. 
-The figure shows an overview of our AMR-DA: AMR parser first transduces the sentence into an AMR graph, followed by an AMR graph exten- der to diversify graphs with different augmentation strategies; finally, the AMR generator synthesizes augmentations from AMR graphs.
-
+We propose a new DA method called AMR-DA that uses the Abstract Meaning Representation (AMR) as the intermediate language. 
+The figure shows an overview of our AMR-DA: AMR parser first transduces the sentence into an AMR graph, followed by an AMR graph extender to diversify graphs with different augmentation strategies; finally, the AMR generator synthesizes augmentations from AMR graphs.
+![Screenshot](pic/pipeline.jpg)
 
 ## requirements 
 ```
