@@ -38,6 +38,10 @@ bash decode_AMR.sh <model-path> <checkpoint> <gpu_id> <source file> <output-name
 (bash decode_AMR.sh /path/to/t5-base amr-t5-base.ckpt 0 ../data/wiki-data/wiki.source wiki-perd-t5-base.txt)
 ```
 
+## Generated Data Examples
+Example augmentations for wiki:
+[original data](https://drive.google.com/file/d/1SA8MsJvyDPdsQwZ0-QJ1jZ6P39Kp98WN/view?usp=sharing) and [generated augmentation](https://drive.google.com/file/d/1kXKeMwBqz0Bf0pyX_D4zFXCmZts8Iyg8/view?usp=sharing).
+
 ## Citation
 Please cite this repository using the following reference:
 ```
