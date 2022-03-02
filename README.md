@@ -25,3 +25,5 @@ cd plms-graph2text
 bash decode_AMR.sh <model-path> <checkpoint> <gpu_id> <source file> <output-name>
 (bash decode_AMR.sh /path/to/t5-base amr-t5-base.ckpt 0 ../data/wiki-data/wiki.source wiki-perd-t5-base.txt)
 ```
+
+## citation
