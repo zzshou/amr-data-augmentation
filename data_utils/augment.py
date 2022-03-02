@@ -1,8 +1,4 @@
-import nlpaug.augmenter.word as naw
-import nltk
 from synonym import SynonymAug
-from antonym import AntonymAug
-
 from nltk.tokenize import WhitespaceTokenizer
 from tqdm import tqdm
 import random
@@ -69,10 +65,9 @@ def write_negative(file):
 
 
 ### syntonym replacement
-
 def replace_syntonym(line, n=1, alpha=0.1, vocab=None, aug=None):
     if not aug:
-        aug = SynonymAug(aug_src='ppdb', model_path='/home/data/zshou/corpus/nltk/ppdb-2.0-tldr',
+        aug = SynonymAug(aug_src='ppdb', model_path='/nltk/ppdb-2.0-tldr',
                          tokenizer=WhitespaceTokenizer(), vocab=vocab, aug_p=alpha)
     new_line = aug.augment(line, n=n)
     if n == 1:
@@ -82,9 +77,8 @@ def replace_syntonym(line, n=1, alpha=0.1, vocab=None, aug=None):
 
 
 def write_syntonym(input, output, alpha=0.1, n=1):
-    # new_file = file.replace('.source', '_synaug_n%d.source' % n)
     new_lines = []
-    aug = SynonymAug(aug_src='ppdb', model_path='/home/data/zshou/corpus/nltk/ppdb-2.0-tldr',
+    aug = SynonymAug(aug_src='ppdb', model_path='/nltk/ppdb-2.0-tldr',
                      tokenizer=WhitespaceTokenizer(), aug_p=alpha)
     with open(input, 'r') as f:
         for line in tqdm(f):
@@ -108,7 +102,9 @@ def _random_delete_leave(line):  # if graph has only one node, this function wil
     candidate = []
     leaves = []
     for item in line.split():
-        if item.startswith(':') and not is_leaf:
+        if item.startswith(':polarity'):
+            continue
+        elif item.startswith(':') and not is_leaf:
             is_leaf = True
             candidate = [item]
         elif item.startswith(':') and len(stack) > 0:
@@ -257,7 +253,6 @@ def write_insert(input, output, leaf_list=None, leaf_file=None, alpha=0.1, n=1):
     else:
         print('must input leaf_list or the file we can extract leaf')
         return
-    # new_file = file.replace('.source', '_insertaug_n%d.source' % n)
     new_lines = []
     with open(input, 'r') as f:
         lines = f.readlines()
@@ -369,28 +364,6 @@ def write_swap(input, output, alpha=0.1, n=1):
         wf.writelines(new_lines)
 
     print('swap finish')
-
-
-### antonym replacement
-# need to update
-
-def replace_antonym(line, n=1, aug=None):
-    if not aug:
-        aug = AntonymAug(tokenizer=WhitespaceTokenizer())
-    new_line = aug.augment(line, n=n)
-    return new_line
-
-
-def write_antonym(file):
-    new_file = file.replace('.source', '_antaug.source')
-    new_lines = []
-    aug = AntonymAug(tokenizer=WhitespaceTokenizer())
-    with open(file, 'r') as f:
-        for line in tqdm(f):
-            new_line = replace_antonym(line, aug)
-            new_lines.append(new_line + '\n')
-    with open(new_file, 'w') as wf:
-        wf.writelines(new_lines)
 
 
 if __name__ == '__main__':
