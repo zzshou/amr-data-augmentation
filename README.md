@@ -1,6 +1,6 @@
 # AMR-DA: Data Augmentation by Abstract Meaning Representation
 
-This repository contains the code for our ACL-2022 paper: AMR-DA: Data Augmentation by Abstract Meaning Representation.
+This repository contains the code for our ACL-2022 paper: [AMR-DA: Data Augmentation by Abstract Meaning Representation](https://aclanthology.org/2022.findings-acl.244).
 
 This figure shows an overview of AMR-DA: AMR parser first transduces the sentence into an AMR graph, followed by an AMR graph extender to diversify graphs with different augmentation strategies; finally, the AMR generator synthesizes augmentations from AMR graphs.
 
@@ -49,6 +49,18 @@ For STS tasks, we directly used the code from [SimCSE](https://github.com/prince
 ## Citation
 Please cite this repository using the following reference:
 ```
-
+@inproceedings{shou-etal-2022-amr,
+    title = "{AMR-DA}: {D}ata Augmentation by {A}bstract {M}eaning {R}epresentation",
+    author = "Shou, Ziyi  and
+      Jiang, Yuxin  and
+      Lin, Fangzhen",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2022",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.findings-acl.244",
+    pages = "3082--3098"
+}
 ```
 
